@@ -1,0 +1,36 @@
+name: Send Weekly Report Email
+
+# Fires when the Claude Code Remote routine finishes writing the coach
+# narrative and pushes it (along with the re-rendered dashboard) to main.
+# Deliberately does NOT run on every push to docs/ -- only once the
+# narrative file itself changes, so the email always includes the AI
+# coach commentary rather than firing early with a placeholder.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/coach_narrative.md"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Send email
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: python3 scripts/send_email.py
