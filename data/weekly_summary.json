@@ -1,7 +1,7 @@
 {
   "week_start": "2026-07-13",
   "week_end": "2026-07-19",
-  "generated_at": "2026-07-20T09:51:47.471231",
+  "generated_at": "2026-07-20T15:14:00.761398",
   "running": {
     "count": 1,
     "distance_km": 6.07,
@@ -31,5 +31,15 @@
     "distance_km_pct": -72.8,
     "moving_time_min_pct": -77.5
   },
-  "trailing_8wk_avg_distance_km": 22.33
+  "trailing_8wk_avg_distance_km": 22.33,
+  "all_time": {
+    "weeks_tracked": 34,
+    "avg_weekly_distance_km": 12.87,
+    "total_distance_km": 437.7,
+    "best_week_distance_km": 48.95,
+    "best_week_start": "2026-05-18"
+  },
+  "vs_all_time_avg": {
+    "distance_km_pct": -52.8
+  }
 }

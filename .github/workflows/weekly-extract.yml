@@ -48,7 +48,12 @@ jobs:
           fi
 
       - name: Analyze last completed week
-        run: python3 scripts/analyze.py
+        run: |
+          if [ "${{ inputs.full }}" = "true" ]; then
+            python3 scripts/analyze.py --backfill
+          else
+            python3 scripts/analyze.py
+          fi
 
       - name: Build dashboard (without coach narrative yet)
         run: python3 scripts/build_report.py

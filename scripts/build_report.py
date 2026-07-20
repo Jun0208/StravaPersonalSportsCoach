@@ -243,6 +243,22 @@ def render_page(summary, history, narrative, is_archive=False):
         stat_card("Avg heart rate", f'{run["avg_heartrate"]} bpm' if run["avg_heartrate"] else "-"),
     ])
 
+    lifetime = summary.get("all_time")
+    lifetime_html = ""
+    if lifetime:
+        vs_lifetime = summary.get("vs_all_time_avg", {}).get("distance_km_pct")
+        lifetime_cards = "".join([
+            stat_card("Weeks tracked", lifetime["weeks_tracked"]),
+            stat_card("Distance this week vs. your average", f'{run["distance_km"]} / {lifetime["avg_weekly_distance_km"]} km', vs_lifetime),
+            stat_card("Best week ever", f'{lifetime["best_week_distance_km"]} km', None),
+            stat_card("Total distance logged", f'{lifetime["total_distance_km"]:.0f} km'),
+        ])
+        lifetime_html = f"""
+  <div class="panel">
+    <h2>Since you started tracking</h2>
+    <div class="cards">{lifetime_cards}</div>
+  </div>"""
+
     narrative_html = (
         f'<div class="narrative">{narrative}</div>' if narrative
         else '<div class="narrative placeholder">Coach narrative for this week hasn\'t been generated yet.</div>'
@@ -266,7 +282,7 @@ def render_page(summary, history, narrative, is_archive=False):
   <div class="subtitle">Week of {summary['week_start']} to {summary['week_end']} · generated {summary['generated_at'][:16].replace('T',' ')}</div>
 
   <div class="cards">{cards}</div>
-
+  {lifetime_html}
   <div class="panel">
     <h2>This week with your coach</h2>
     {narrative_html}
