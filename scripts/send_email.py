@@ -17,8 +17,10 @@ itself simple (stat table + narrative text + a link to the full interactive
 dashboard) since HTML/CSS support varies wildly across email clients --
 the rich charts live on the GitHub Pages site, not in the inbox.
 """
+import html
 import json
 import os
+import re
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -26,6 +28,34 @@ from email.mime.text import MIMEText
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 SUMMARY_PATH = os.path.join(ROOT, "data", "weekly_summary.json")
 NARRATIVE_PATH = os.path.join(ROOT, "data", "coach_narrative.md")
+
+
+def inline_md(text):
+    escaped = html.escape(text)
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", escaped)
+
+
+def narrative_to_html(text):
+    """Same minimal markdown -> HTML as build_report.py's render_narrative --
+    duplicated rather than shared since these are independent scripts, but
+    the email body would otherwise show literal '**' and '-' characters."""
+    if not text:
+        return ""
+    paragraphs = re.split(r"\n\s*\n", text.strip())
+    parts = []
+    for para in paragraphs:
+        lines = [l.strip() for l in para.split("\n") if l.strip()]
+        if lines and all(l.startswith(("- ", "* ")) for l in lines):
+            items = "".join(f"<li>{inline_md(l[2:])}</li>" for l in lines)
+            parts.append(f'<ul style="margin:0 0 12px; padding-left:20px;">{items}</ul>')
+        else:
+            parts.append(f'<p style="margin:0 0 12px;">{inline_md(" ".join(lines))}</p>')
+    return "".join(parts)
+
+
+def strip_md(text):
+    """Strip markdown bold markers for the plain-text email body."""
+    return re.sub(r"\*\*(.+?)\*\*", r"\1", text)
 
 
 def main():
@@ -52,7 +82,7 @@ def main():
         f"Avg pace: {run['avg_pace_min_per_km']} min/km" if run["avg_pace_min_per_km"] else "Avg pace: -",
         f"Elevation gain: {run['elevation_gain_m']:.0f} m",
         "",
-        narrative or "(Coach narrative unavailable this week.)",
+        strip_md(narrative) if narrative else "(Coach narrative unavailable this week.)",
     ]
     if report_url:
         text_lines += ["", f"Full dashboard with charts: {report_url}"]
@@ -69,7 +99,7 @@ def main():
         <tr><td style="padding:4px 0;">Avg pace</td><td style="text-align:right;"><b>{run['avg_pace_min_per_km'] or '-'} min/km</b></td></tr>
         <tr><td style="padding:4px 0;">Elevation gain</td><td style="text-align:right;"><b>{run['elevation_gain_m']:.0f} m</b></td></tr>
       </table>
-      <div style="white-space:pre-wrap; line-height:1.5;">{narrative or "(Coach narrative unavailable this week.)"}</div>
+      <div style="line-height:1.5;">{narrative_to_html(narrative) if narrative else "(Coach narrative unavailable this week.)"}</div>
       {f'<p style="margin-top:20px;"><a href="{report_url}">View the full dashboard &rarr;</a></p>' if report_url else ''}
     </div>
     """

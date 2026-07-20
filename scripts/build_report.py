@@ -19,8 +19,10 @@ with your coach". If not, that section is left as a placeholder --
 build_report.py runs before the narrative step in the pipeline.
 """
 import csv
+import html
 import json
 import os
+import re
 from datetime import datetime
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
@@ -101,11 +103,38 @@ h1 { font-size: 1.5rem; margin-bottom: 4px; }
 table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 12px; color: var(--text-secondary); }
 th, td { text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
 th:first-child, td:first-child { text-align: left; }
-.narrative { line-height: 1.6; white-space: pre-wrap; }
+.narrative { line-height: 1.6; }
+.narrative p { margin: 0 0 12px; }
+.narrative ul { margin: 0 0 12px; padding-left: 20px; }
+.narrative li { margin-bottom: 4px; }
 .narrative.placeholder { color: var(--muted); font-style: italic; }
 footer { color: var(--muted); font-size: 0.8rem; margin-top: 24px; }
 a { color: var(--series-1); }
 """
+
+
+def inline_md(text):
+    escaped = html.escape(text)
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", escaped)
+
+
+def render_narrative(text):
+    """Minimal markdown -> HTML: paragraphs, **bold**, and '- ' bullet lists.
+    The dashboard/email render this as raw preformatted text otherwise, so
+    the coach narrative's markdown (bold headers, bullet training plan)
+    would show up as literal asterisks and dashes instead of formatting."""
+    if not text:
+        return None
+    paragraphs = re.split(r"\n\s*\n", text.strip())
+    parts = []
+    for para in paragraphs:
+        lines = [l.strip() for l in para.split("\n") if l.strip()]
+        if lines and all(l.startswith(("- ", "* ")) for l in lines):
+            items = "".join(f"<li>{inline_md(l[2:])}</li>" for l in lines)
+            parts.append(f"<ul>{items}</ul>")
+        else:
+            parts.append(f"<p>{inline_md(' '.join(lines))}</p>")
+    return "".join(parts)
 
 
 def load_summary():
@@ -260,7 +289,7 @@ def render_page(summary, history, narrative, is_archive=False):
   </div>"""
 
     narrative_html = (
-        f'<div class="narrative">{narrative}</div>' if narrative
+        f'<div class="narrative">{render_narrative(narrative)}</div>' if narrative
         else '<div class="narrative placeholder">Coach narrative for this week hasn\'t been generated yet.</div>'
     )
 
