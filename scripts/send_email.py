@@ -25,7 +25,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.environ.get("PIPELINE_ROOT", os.path.join(os.path.dirname(__file__), ".."))
 SUMMARY_PATH = os.path.join(ROOT, "data", "weekly_summary.json")
 NARRATIVE_PATH = os.path.join(ROOT, "data", "coach_narrative.md")
 

@@ -21,9 +21,10 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "activities.db")
-SUMMARY_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "weekly_summary.json")
-HISTORY_CSV = os.path.join(os.path.dirname(__file__), "..", "data", "weekly_history.csv")
+ROOT = os.environ.get("PIPELINE_ROOT", os.path.join(os.path.dirname(__file__), ".."))
+DB_PATH = os.path.join(ROOT, "data", "activities.db")
+SUMMARY_PATH = os.path.join(ROOT, "data", "weekly_summary.json")
+HISTORY_CSV = os.path.join(ROOT, "data", "weekly_history.csv")
 
 RUN_TYPES = {"Run", "TrailRun", "VirtualRun"}
 

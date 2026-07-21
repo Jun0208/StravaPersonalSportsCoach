@@ -25,7 +25,7 @@ import os
 import re
 from datetime import datetime
 
-ROOT = os.path.join(os.path.dirname(__file__), "..")
+ROOT = os.environ.get("PIPELINE_ROOT", os.path.join(os.path.dirname(__file__), ".."))
 SUMMARY_PATH = os.path.join(ROOT, "data", "weekly_summary.json")
 HISTORY_CSV = os.path.join(ROOT, "data", "weekly_history.csv")
 NARRATIVE_PATH = os.path.join(ROOT, "data", "coach_narrative.md")

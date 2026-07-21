@@ -35,7 +35,8 @@ import requests
 
 TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
-DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "activities.db")
+ROOT = os.environ.get("PIPELINE_ROOT", os.path.join(os.path.dirname(__file__), ".."))
+DB_PATH = os.path.join(ROOT, "data", "activities.db")
 PER_PAGE = 200
 OVERLAP_DAYS = 2
 
