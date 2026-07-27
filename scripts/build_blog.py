@@ -70,12 +70,18 @@ def pct_delta(curr, prev):
 EXTREME_DELTA_PCT = 150  # beyond this, the raw % is more distracting than informative
 
 
-def delta_badge(curr, prev, higher_is_up=True):
+def delta_badge(curr, prev, higher_is_better=True):
+    """Arrow always shows the literal direction of change. Color shows
+    whether that direction is the better one for this metric -- e.g. a
+    faster (lower) pace is an improvement, so it's green even though the
+    number went down."""
     d = pct_delta(curr, prev)
     if d is None:
         return '<span class="delta delta-flat">NEW</span>'
     arrow = "↑" if d >= 0 else "↓"
-    cls = "delta-up" if d >= 0 else "delta-down"
+    went_up = d >= 0
+    is_better = went_up if higher_is_better else (not went_up)
+    cls = "delta-up" if is_better else "delta-down"
     if abs(d) > EXTREME_DELTA_PCT:
         return f'<span class="delta {cls}">{arrow}</span>'
     return f'<span class="delta {cls}">{arrow} {abs(d):.0f}%</span>'
@@ -309,7 +315,7 @@ def build_homepage(rows, today):
         deltas["distance"] = delta_badge(latest["run_distance_km"], prev["run_distance_km"])
         deltas["time"] = delta_badge(latest["run_time_min"], prev["run_time_min"])
         if latest["run_pace_min_per_km"] and prev["run_pace_min_per_km"]:
-            deltas["pace"] = delta_badge(latest["run_pace_min_per_km"], prev["run_pace_min_per_km"])
+            deltas["pace"] = delta_badge(latest["run_pace_min_per_km"], prev["run_pace_min_per_km"], higher_is_better=False)
         deltas["elevation"] = delta_badge(latest["run_elevation_gain_m"], prev["run_elevation_gain_m"])
 
     we = week_end(latest["week_start_date"])
@@ -341,7 +347,7 @@ def build_homepage(rows, today):
         month_deltas["distance"] = delta_badge(month_dist, pm_dist)
         month_deltas["time"] = delta_badge(month_time, pm_time)
         if month_pace and pm_pace:
-            month_deltas["pace"] = delta_badge(month_pace, pm_pace)
+            month_deltas["pace"] = delta_badge(month_pace, pm_pace, higher_is_better=False)
         month_deltas["elevation"] = delta_badge(month_elev, pm_elev)
 
     section2 = f"""
@@ -552,7 +558,7 @@ def build_week_page(rows, idx):
         deltas["distance"] = delta_badge(r["run_distance_km"], prev["run_distance_km"])
         deltas["time"] = delta_badge(r["run_time_min"], prev["run_time_min"])
         if r["run_pace_min_per_km"] and prev["run_pace_min_per_km"]:
-            deltas["pace"] = delta_badge(r["run_pace_min_per_km"], prev["run_pace_min_per_km"])
+            deltas["pace"] = delta_badge(r["run_pace_min_per_km"], prev["run_pace_min_per_km"], higher_is_better=False)
         deltas["elevation"] = delta_badge(r["run_elevation_gain_m"], prev["run_elevation_gain_m"])
 
     we = week_end(r["week_start_date"])
