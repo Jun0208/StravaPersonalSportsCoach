@@ -1,12 +1,10 @@
-**How you did this week (Jul 13–19):** One run, 6.07 km in just under 31 minutes at 5:07/km — that's your fastest pace in weeks. But volume dropped sharply: down 82% from last week's 33.39 km, down 73% from your trailing 8-week average (22.33 km), and down 53% from your all-time weekly average (12.87 km) across the 34 weeks you've been tracked.
+**How you did this week (Jul 20–26):** A strong rebound — 3 runs totaling 31.15 km, including a new longest run of 12.39 km. That's up 413% from last week's single 6.07 km run, up 105% versus your trailing 8-week average (15.18 km), and up 132.5% versus your all-time weekly average (13.4 km across 35 weeks tracked). Average pace eased slightly to 5:28/km (from 5:07/km) and average heart rate rose to 152.6 bpm (from 141.1), both consistent with genuinely harder, longer work rather than anything concerning on their own.
 
-**Key insight — this is a pattern, not a one-off:** Looking back through your history, you've done this before. Your best week ever (48.95 km, mid-May) was immediately followed by *two* zero-run weeks. Now the same thing has happened again: your strongest recent week (33.39 km) was followed by almost nothing. Big-volume weeks are consistently crashing into near-total rest the week after, rather than settling into a steady build. That's worth paying attention to — it's the classic signature of pushing a big week hard enough that you need real recovery afterward, rather than one that was sustainable.
+**Key insight — you're right back in "big week" territory, and that's exactly where the pattern bites.** Your history shows a clear boom-bust rhythm: your all-time best week (48.95 km, mid-May) was followed by two zero-run weeks; a 33.39 km week in early July was followed by almost nothing. This week's 31.15 km puts you back at that same scale — the second-highest volume week in your recent history. If the pattern holds, next week is exactly when the crash would happen again. The good news is you clearly have the fitness for weeks like this (a sub-5:20 pace across 12+ km is a real result) — the issue has never been capability, it's been what comes immediately after.
 
-The bright spot: your single run this week was genuinely quick (5:07/km, faster than every run in the last 8 weeks), so whatever fitness you built in that big week is still there — you're not detrained, you're under-recovered.
+**Next week's plan: protect this week's gains instead of repeating the cycle.**
+- **Run 1 — Easy/recovery**: 25–30 min, genuinely easy, ~6:00–6:30/km, ideally 1–2 days after your hardest effort from this week.
+- **Run 2 — Steady/moderate**: 5–6 km at ~5:30–5:45/km — present, but clearly a step down from this week's long run.
+- **Run 3 — Optional shorter long run**: 8–9 km at ~5:45–6:00/km only if you're feeling fresh; skip or shorten it if not.
 
-**Next week's plan:** Don't chase last week's mileage back immediately — rebuild toward your averages, not your peak.
-- **Run 1 — Easy/recovery**: 30–35 min, easy and conversational, ~6:00–6:30/km. Just re-establish the habit.
-- **Run 2 — Steady tempo**: 4–5 km at ~5:30/km — a notch controlled, not a hard effort.
-- **Run 3 — Comfortable long run**: 8–10 km at ~5:45–6:00/km, well short of last week's 6-km-total effort but enough to rebuild endurance.
-
-Target roughly 18–22 km total for the week — right around your trailing and all-time averages — rather than swinging straight back to 30+. If you can string together 2–3 weeks at that steady level before the next big push, you'll likely break the boom-bust cycle and start actually compounding fitness week over week.
+Target roughly 16–20 km total — a deliberate step down, not a repeat of this week's volume. If you can land a moderate week here instead of a zero week, you'll have broken the pattern for the first time in your tracked history, and that's worth more right now than any single big week.
