@@ -47,6 +47,22 @@ a { color: inherit; text-decoration: none; }
   font-size: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 28px;
   text-transform: uppercase;
 }
+.line-chart-wrap { position: relative; }
+.line-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-axis-label {
+  font-size: 10px; fill: var(--muted); font-family: system-ui, sans-serif;
+}
+.chart-point { transition: r 0.1s; }
+.chart-hit { cursor: pointer; }
+.chart-hit:hover + .chart-point, .chart-hit:focus + .chart-point { r: 6; }
+a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 6; }
+.chart-tooltip {
+  position: fixed; transform: translate(-50%, -100%);
+  background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 4px;
+  padding: 8px 12px; pointer-events: none; z-index: 10; white-space: nowrap;
+}
+.chart-tooltip-value { display: block; font-size: 15px; font-weight: 800; color: var(--text); }
+.chart-tooltip-date { display: block; font-size: 11px; color: var(--text-2); margin-top: 2px; }
 .stat-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);

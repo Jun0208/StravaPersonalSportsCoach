@@ -159,6 +159,22 @@ a { color: inherit; text-decoration: none; }
   font-size: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 28px;
   text-transform: uppercase;
 }
+.line-chart-wrap { position: relative; }
+.line-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-axis-label {
+  font-size: 10px; fill: var(--muted); font-family: system-ui, sans-serif;
+}
+.chart-point { transition: r 0.1s; }
+.chart-hit { cursor: pointer; }
+.chart-hit:hover + .chart-point, .chart-hit:focus + .chart-point { r: 6; }
+a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 6; }
+.chart-tooltip {
+  position: fixed; transform: translate(-50%, -100%);
+  background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 4px;
+  padding: 8px 12px; pointer-events: none; z-index: 10; white-space: nowrap;
+}
+.chart-tooltip-value { display: block; font-size: 15px; font-weight: 800; color: var(--text); }
+.chart-tooltip-date { display: block; font-size: 11px; color: var(--text-2); margin-top: 2px; }
 .stat-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);
@@ -353,23 +369,115 @@ def build_homepage(rows, today):
 
 
 def build_week_archive_list(rows):
-    items = []
-    for r in reversed(rows):
-        we = week_end(r["week_start_date"])
-        date_range = f"{r['week_start_date'].strftime('%b %d')}–{we.strftime('%b %d, %Y')}"
-        items.append(f"""
-        <a class="week-row" href="{r['week_start']}.html">
-          <span class="week-date">{date_range}</span>
-          <span class="week-stats"><span><b>{r['run_distance_km']:.1f}</b> km</span>
-            <span><b>{fmt_pace(r['run_pace_min_per_km'])}</b></span>
-            <span><b>{int(r['run_count'])}</b> run{"s" if r['run_count'] != 1 else ""}</span></span>
-        </a>""")
+    """The 'All Weeks' page: a single interactive line chart of weekly
+    distance across full history (2px line, >=8px points with a surface
+    ring, hover crosshair+tooltip, points link to that week's page) --
+    replaces a long text list per the user's steer toward more visual,
+    less list-heavy presentation."""
+    n = len(rows)
+    W, H = 840, 320
+    pad_l, pad_r, pad_t, pad_b = 8, 8, 24, 36
+    plot_w = W - pad_l - pad_r
+    plot_h = H - pad_t - pad_b
+    max_dist = max((r["run_distance_km"] for r in rows), default=0) or 1.0
+    y_max = max_dist * 1.15
+
+    def x_at(i):
+        return pad_l + (i / (n - 1) * plot_w if n > 1 else plot_w / 2)
+
+    def y_at(v):
+        return pad_t + plot_h - (v / y_max * plot_h)
+
+    # gridlines at 4 clean y-steps
+    grid_lines = []
+    for step in range(1, 5):
+        gy = pad_t + plot_h - (step / 4 * plot_h)
+        gval = round(y_max * step / 4)
+        grid_lines.append(
+            f'<line x1="{pad_l}" y1="{gy:.1f}" x2="{W - pad_r}" y2="{gy:.1f}" '
+            f'stroke="var(--hairline)" stroke-width="1"/>'
+            f'<text x="{pad_l}" y="{gy - 6:.1f}" class="chart-axis-label">{gval:.0f}</text>'
+        )
+
+    points = [(x_at(i), y_at(r["run_distance_km"])) for i, r in enumerate(rows)]
+    path_d = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points)
+
+    # sparse x-axis labels: first, last, and every ~6th week between
+    label_every = max(1, n // 6)
+    x_labels = []
+    for i, r in enumerate(rows):
+        if i == 0 or i == n - 1 or i % label_every == 0:
+            x_labels.append(
+                f'<text x="{x_at(i):.1f}" y="{H - 10}" class="chart-axis-label" '
+                f'text-anchor="middle">{r["week_start_date"].strftime("%b %-d")}</text>'
+            )
+
+    marks = []
+    for i, (r, (x, y)) in enumerate(zip(rows, points)):
+        marks.append(
+            f'<a href="{r["week_start"]}.html" aria-label="Week of {r["week_start_date"].strftime("%b %-d, %Y")}, '
+            f'{r["run_distance_km"]:.1f} km">'
+            f'<circle class="chart-point" data-idx="{i}" cx="{x:.1f}" cy="{y:.1f}" r="4" '
+            f'fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>'
+            f'<circle class="chart-hit" data-idx="{i}" data-date="{html.escape(r["week_start_date"].strftime("%b %-d, %Y"))}" '
+            f'data-dist="{r["run_distance_km"]:.1f}" cx="{x:.1f}" cy="{y:.1f}" r="14" fill="transparent"/>'
+            f'</a>'
+        )
+
+    chart_html = f"""
+    <div class="line-chart-wrap">
+      <svg viewBox="0 0 {W} {H}" class="line-chart" id="distance-chart">
+        {"".join(grid_lines)}
+        <path d="{path_d}" fill="none" stroke="var(--accent)" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round" pointer-events="none"/>
+        {"".join(x_labels)}
+        {"".join(marks)}
+        <line id="crosshair" x1="0" y1="{pad_t}" x2="0" y2="{pad_t + plot_h}"
+              stroke="var(--text-2)" stroke-width="1" opacity="0" pointer-events="none"/>
+      </svg>
+      <div id="chart-tooltip" class="chart-tooltip" hidden>
+        <span class="chart-tooltip-value"></span>
+        <span class="chart-tooltip-date"></span>
+      </div>
+    </div>
+    <script>
+    (function() {{
+      var svg = document.getElementById('distance-chart');
+      var tooltip = document.getElementById('chart-tooltip');
+      var crosshair = document.getElementById('crosshair');
+      var valueEl = tooltip.querySelector('.chart-tooltip-value');
+      var dateEl = tooltip.querySelector('.chart-tooltip-date');
+      var hits = svg.querySelectorAll('.chart-hit');
+      hits.forEach(function(hit) {{
+        function show(e) {{
+          var x = hit.getAttribute('cx');
+          crosshair.setAttribute('x1', x);
+          crosshair.setAttribute('x2', x);
+          crosshair.setAttribute('opacity', '1');
+          valueEl.textContent = hit.getAttribute('data-dist') + ' km';
+          dateEl.textContent = hit.getAttribute('data-date');
+          var rect = svg.getBoundingClientRect();
+          var scale = rect.width / {W};
+          tooltip.style.left = (rect.left + x * scale) + 'px';
+          tooltip.style.top = (rect.top + window.scrollY - 8) + 'px';
+          tooltip.hidden = false;
+        }}
+        hit.addEventListener('pointerenter', show);
+        hit.addEventListener('focus', show);
+        hit.addEventListener('pointerleave', function() {{
+          crosshair.setAttribute('opacity', '0');
+          tooltip.hidden = true;
+        }});
+      }});
+    }})();
+    </script>"""
 
     body = nav_html(depth=1) + f"""<div class="wrap">
       <section class="section" style="border-bottom:none;">
         <p class="eyebrow">Archive</p>
-        <h2 class="section-title">All Weeks</h2>
-        <div class="week-list">{"".join(items)}</div>
+        <h2 class="section-title">Weekly Distance</h2>
+        <p class="stat-label" style="margin-bottom:16px;">Hover or tap a point for details — click to open that week</p>
+        {chart_html}
       </section>
     </div>"""
     return page_shell("All Weeks — Running Log", body)
