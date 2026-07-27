@@ -78,7 +78,7 @@ def delta_badge(curr, prev, higher_is_better=True):
     d = pct_delta(curr, prev)
     if d is None:
         return '<span class="delta delta-flat">NEW</span>'
-    arrow = "↑" if d >= 0 else "↓"
+    arrow = "▲" if d >= 0 else "▼"
     went_up = d >= 0
     is_better = went_up if higher_is_better else (not went_up)
     cls = "delta-up" if is_better else "delta-down"
@@ -205,7 +205,7 @@ a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 
   font-variant-numeric: proportional-nums;
 }
 .stat-unit { font-size: 14px; font-weight: 600; color: var(--text-2); margin-left: 4px; }
-.delta { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
+.delta { display: inline-block; margin-top: 10px; font-size: 17px; font-weight: 800; }
 .delta-up { color: var(--up); }
 .delta-down { color: var(--down); }
 .delta-flat { color: var(--muted); }
