@@ -14,6 +14,8 @@
   --muted: #6e6e6e;
   --hairline: rgba(255,255,255,0.08);
   --accent: #d95926;
+  --up: #0ca30c;
+  --down: #d03b3b;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -32,6 +34,7 @@ a { color: inherit; text-decoration: none; }
 .brand {
   font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
 }
+.brand-name { color: var(--down); }
 .nav-link {
   font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-2); border-bottom: 1px solid transparent;
@@ -78,8 +81,8 @@ a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 
 }
 .stat-unit { font-size: 14px; font-weight: 600; color: var(--text-2); margin-left: 4px; }
 .delta { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
-.delta-up { color: var(--text); }
-.delta-down { color: var(--text-2); }
+.delta-up { color: var(--up); }
+.delta-down { color: var(--down); }
 .delta-flat { color: var(--muted); }
 .date-range { font-size: 14px; color: var(--text-2); margin: 0 0 6px; }
 .hero-row { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 32px; }
@@ -128,7 +131,7 @@ footer { padding: 32px 0 48px; }
 </head>
 <body>
 <div class="wrap"><div class="nav">
-  <a class="brand" href="index.html">Running Log</a>
+  <a class="brand" href="index.html"><span class="brand-name">Jun's</span> Running Log</a>
   <a class="nav-link" href="weeks/index.html">All Weeks</a>
 </div></div><div class="wrap">
     <section class="section">
@@ -139,7 +142,7 @@ footer { padding: 32px 0 48px; }
     <section class="section">
       <p class="eyebrow">July</p>
       <h2 class="section-title">7 Runs</h2>
-      <div class="stat-grid"><div class="stat-tile"><p class="stat-label">Distance</p><div class="stat-value">70.6<span class="stat-unit">km</span></div></div><div class="stat-tile"><p class="stat-label">Time</p><div class="stat-value">6h 22m</div></div><div class="stat-tile"><p class="stat-label">Pace</p><div class="stat-value">5:24/km</div></div><div class="stat-tile"><p class="stat-label">Elevation</p><div class="stat-value">217<span class="stat-unit">m</span></div></div></div>
+      <div class="stat-grid"><div class="stat-tile"><p class="stat-label">Distance</p><div class="stat-value">70.6<span class="stat-unit">km</span></div><span class="delta delta-up">↑ 37%</span></div><div class="stat-tile"><p class="stat-label">Time</p><div class="stat-value">6h 22m</div><span class="delta delta-up">↑ 30%</span></div><div class="stat-tile"><p class="stat-label">Pace</p><div class="stat-value">5:24/km</div><span class="delta delta-down">↓ 5%</span></div><div class="stat-tile"><p class="stat-label">Elevation</p><div class="stat-value">217<span class="stat-unit">m</span></div><span class="delta delta-down">↓ 45%</span></div></div>
     </section>
     <section class="section">
       <p class="eyebrow">2026 Year To Date</p>

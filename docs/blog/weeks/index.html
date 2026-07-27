@@ -14,6 +14,8 @@
   --muted: #6e6e6e;
   --hairline: rgba(255,255,255,0.08);
   --accent: #d95926;
+  --up: #0ca30c;
+  --down: #d03b3b;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -32,6 +34,7 @@ a { color: inherit; text-decoration: none; }
 .brand {
   font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
 }
+.brand-name { color: var(--down); }
 .nav-link {
   font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-2); border-bottom: 1px solid transparent;
@@ -78,8 +81,8 @@ a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 
 }
 .stat-unit { font-size: 14px; font-weight: 600; color: var(--text-2); margin-left: 4px; }
 .delta { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
-.delta-up { color: var(--text); }
-.delta-down { color: var(--text-2); }
+.delta-up { color: var(--up); }
+.delta-down { color: var(--down); }
 .delta-flat { color: var(--muted); }
 .date-range { font-size: 14px; color: var(--text-2); margin: 0 0 6px; }
 .hero-row { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 32px; }
@@ -128,7 +131,7 @@ footer { padding: 32px 0 48px; }
 </head>
 <body>
 <div class="wrap"><div class="nav">
-  <a class="brand" href="../index.html">Running Log</a>
+  <a class="brand" href="../index.html"><span class="brand-name">Jun's</span> Running Log</a>
   <a class="nav-link" href="../weeks/index.html">All Weeks</a>
 </div></div><div class="wrap">
       <section class="section" style="border-bottom:none;">
@@ -139,6 +142,7 @@ footer { padding: 32px 0 48px; }
     <div class="line-chart-wrap">
       <svg viewBox="0 0 840 320" class="line-chart" id="distance-chart">
         <line x1="8" y1="219.0" x2="832" y2="219.0" stroke="var(--hairline)" stroke-width="1"/><text x="8" y="213.0" class="chart-axis-label">14</text><line x1="8" y1="154.0" x2="832" y2="154.0" stroke="var(--hairline)" stroke-width="1"/><text x="8" y="148.0" class="chart-axis-label">28</text><line x1="8" y1="89.0" x2="832" y2="89.0" stroke="var(--hairline)" stroke-width="1"/><text x="8" y="83.0" class="chart-axis-label">42</text><line x1="8" y1="24.0" x2="832" y2="24.0" stroke="var(--hairline)" stroke-width="1"/><text x="8" y="18.0" class="chart-axis-label">56</text>
+        <path d="M 8.0 284.0 L 8.0 256.2 L 32.2 200.0 L 56.5 206.9 L 80.7 212.5 L 104.9 284.0 L 129.2 256.1 L 153.4 254.9 L 177.6 183.1 L 201.9 254.7 L 226.1 284.0 L 250.4 284.0 L 274.6 237.9 L 298.8 259.7 L 323.1 246.3 L 347.3 177.8 L 371.5 232.3 L 395.8 143.9 L 420.0 248.4 L 444.2 191.2 L 468.5 194.4 L 492.7 152.0 L 516.9 182.8 L 541.2 284.0 L 565.4 284.0 L 589.6 214.3 L 613.9 57.9 L 638.1 284.0 L 662.4 284.0 L 686.6 260.8 L 710.8 196.9 L 735.1 193.7 L 759.3 246.1 L 783.5 129.8 L 807.8 256.0 L 832.0 140.1 L 832.0 284.0 Z" fill="var(--accent)" fill-opacity="0.1" stroke="none" pointer-events="none"/>
         <path d="M 8.0 256.2 L 32.2 200.0 L 56.5 206.9 L 80.7 212.5 L 104.9 284.0 L 129.2 256.1 L 153.4 254.9 L 177.6 183.1 L 201.9 254.7 L 226.1 284.0 L 250.4 284.0 L 274.6 237.9 L 298.8 259.7 L 323.1 246.3 L 347.3 177.8 L 371.5 232.3 L 395.8 143.9 L 420.0 248.4 L 444.2 191.2 L 468.5 194.4 L 492.7 152.0 L 516.9 182.8 L 541.2 284.0 L 565.4 284.0 L 589.6 214.3 L 613.9 57.9 L 638.1 284.0 L 662.4 284.0 L 686.6 260.8 L 710.8 196.9 L 735.1 193.7 L 759.3 246.1 L 783.5 129.8 L 807.8 256.0 L 832.0 140.1" fill="none" stroke="var(--accent)" stroke-width="2"
               stroke-linejoin="round" stroke-linecap="round" pointer-events="none"/>
         <text x="8.0" y="310" class="chart-axis-label" text-anchor="middle">Nov 24</text><text x="129.2" y="310" class="chart-axis-label" text-anchor="middle">Dec 29</text><text x="250.4" y="310" class="chart-axis-label" text-anchor="middle">Feb 2</text><text x="371.5" y="310" class="chart-axis-label" text-anchor="middle">Mar 9</text><text x="492.7" y="310" class="chart-axis-label" text-anchor="middle">Apr 13</text><text x="613.9" y="310" class="chart-axis-label" text-anchor="middle">May 18</text><text x="735.1" y="310" class="chart-axis-label" text-anchor="middle">Jun 22</text><text x="832.0" y="310" class="chart-axis-label" text-anchor="middle">Jul 20</text>

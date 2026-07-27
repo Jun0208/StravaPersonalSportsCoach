@@ -85,6 +85,13 @@ def month_bucket(rows, year, month):
     return [r for r in rows if r["week_start_date"].year == year and r["week_start_date"].month == month]
 
 
+def prev_month_bucket(rows, year, month):
+    y, m = year, month - 1
+    if m == 0:
+        y, m = year - 1, 12
+    return month_bucket(rows, y, m)
+
+
 def find_current_month_bucket(rows, today):
     y, m = today.year, today.month
     bucket = month_bucket(rows, y, m)
@@ -126,6 +133,8 @@ BASE_CSS = """
   --muted: #6e6e6e;
   --hairline: rgba(255,255,255,0.08);
   --accent: #d95926;
+  --up: #0ca30c;
+  --down: #d03b3b;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -144,6 +153,7 @@ a { color: inherit; text-decoration: none; }
 .brand {
   font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
 }
+.brand-name { color: var(--down); }
 .nav-link {
   font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-2); border-bottom: 1px solid transparent;
@@ -190,8 +200,8 @@ a:has(.chart-hit:hover) .chart-point, a:has(.chart-hit:focus) .chart-point { r: 
 }
 .stat-unit { font-size: 14px; font-weight: 600; color: var(--text-2); margin-left: 4px; }
 .delta { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
-.delta-up { color: var(--text); }
-.delta-down { color: var(--text-2); }
+.delta-up { color: var(--up); }
+.delta-down { color: var(--down); }
 .delta-flat { color: var(--muted); }
 .date-range { font-size: 14px; color: var(--text-2); margin: 0 0 6px; }
 .hero-row { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 32px; }
@@ -260,7 +270,7 @@ def nav_html(depth=0):
     (0 for index.html, 1 for weeks/*.html) -- controls relative path prefixes."""
     prefix = "../" * depth
     return f"""<div class="wrap"><div class="nav">
-  <a class="brand" href="{prefix}index.html">Running Log</a>
+  <a class="brand" href="{prefix}index.html"><span class="brand-name">Jun's</span> Running Log</a>
   <a class="nav-link" href="{prefix}weeks/index.html">All Weeks</a>
 </div></div>"""
 
@@ -321,11 +331,24 @@ def build_homepage(rows, today):
     month_elev = sum_field(month_rows, "run_elevation_gain_m")
     label = MONTH_NAMES[mm - 1] + (f" {my}" if my != today.year else "")
 
+    pm_rows = prev_month_bucket(rows, my, mm)
+    month_deltas = {}
+    if pm_rows:
+        pm_dist = sum_field(pm_rows, "run_distance_km")
+        pm_time = sum_field(pm_rows, "run_time_min")
+        pm_pace = weighted_avg_pace(pm_rows)
+        pm_elev = sum_field(pm_rows, "run_elevation_gain_m")
+        month_deltas["distance"] = delta_badge(month_dist, pm_dist)
+        month_deltas["time"] = delta_badge(month_time, pm_time)
+        if month_pace and pm_pace:
+            month_deltas["pace"] = delta_badge(month_pace, pm_pace)
+        month_deltas["elevation"] = delta_badge(month_elev, pm_elev)
+
     section2 = f"""
     <section class="section">
       <p class="eyebrow">{label}</p>
       <h2 class="section-title">{month_runs} Run{"s" if month_runs != 1 else ""}</h2>
-      {stat_tiles(month_dist, month_time, month_pace, month_elev, None)}
+      {stat_tiles(month_dist, month_time, month_pace, month_elev, None, month_deltas)}
     </section>"""
 
     yr_rows = year_bucket(rows, today.year)
@@ -401,6 +424,12 @@ def build_week_archive_list(rows):
 
     points = [(x_at(i), y_at(r["run_distance_km"])) for i, r in enumerate(rows)]
     path_d = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points)
+    baseline_y = pad_t + plot_h
+    area_d = (
+        f"M {points[0][0]:.1f} {baseline_y:.1f} L "
+        + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points)
+        + f" L {points[-1][0]:.1f} {baseline_y:.1f} Z"
+    ) if points else ""
 
     # sparse x-axis labels: first, last, and every ~6th week between
     label_every = max(1, n // 6)
@@ -428,6 +457,7 @@ def build_week_archive_list(rows):
     <div class="line-chart-wrap">
       <svg viewBox="0 0 {W} {H}" class="line-chart" id="distance-chart">
         {"".join(grid_lines)}
+        <path d="{area_d}" fill="var(--accent)" fill-opacity="0.1" stroke="none" pointer-events="none"/>
         <path d="{path_d}" fill="none" stroke="var(--accent)" stroke-width="2"
               stroke-linejoin="round" stroke-linecap="round" pointer-events="none"/>
         {"".join(x_labels)}
