@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mar 30–Apr 05, 2026 — Running Log</title>
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1c1c1c;
+  --text: #ffffff;
+  --text-2: #a8a8a8;
+  --muted: #6e6e6e;
+  --hairline: rgba(255,255,255,0.08);
+  --accent: #d95926;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 0; border-bottom: 1px solid var(--hairline);
+}
+.brand {
+  font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.nav-link {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-2); border-bottom: 1px solid transparent;
+}
+.nav-link:hover { color: var(--text); border-color: var(--text); }
+.section { padding: 48px 0; border-bottom: 1px solid var(--hairline); }
+.section:last-of-type { border-bottom: none; }
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 10px;
+}
+.section-title {
+  font-size: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 28px;
+  text-transform: uppercase;
+}
+.stat-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);
+}
+.stat-tile { background: var(--surface); padding: 20px 18px; }
+.stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 8px;
+}
+.stat-value {
+  font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;
+  font-variant-numeric: proportional-nums;
+}
+.stat-unit { font-size: 14px; font-weight: 600; color: var(--text-2); margin-left: 4px; }
+.delta { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
+.delta-up { color: var(--text); }
+.delta-down { color: var(--text-2); }
+.delta-flat { color: var(--muted); }
+.date-range { font-size: 14px; color: var(--text-2); margin: 0 0 6px; }
+.hero-row { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-stat .stat-value { font-size: 44px; }
+.chart-wrap { margin-top: 8px; }
+.bar-row { display: flex; align-items: flex-end; gap: 6px; height: 140px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.bar { width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 2px; }
+.bar-col.empty .bar { background: var(--surface-2); }
+.bar-label { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+.bar-value { font-size: 10px; color: var(--text-2); margin-bottom: 4px; font-weight: 600; }
+footer { padding: 32px 0 48px; }
+.footer-text { font-size: 12px; color: var(--muted); }
+.week-list { border-top: 1px solid var(--hairline); }
+.week-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid var(--hairline);
+}
+.week-row:hover .week-date { color: var(--accent); }
+.week-date { font-size: 16px; font-weight: 700; transition: color 0.15s; }
+.week-stats { display: flex; gap: 24px; font-size: 13px; color: var(--text-2); }
+.week-stats b { color: var(--text); font-weight: 700; }
+.back-link {
+  display: inline-block; margin: 28px 0 4px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2);
+}
+.back-link:hover { color: var(--text); }
+.week-nav {
+  display: flex; justify-content: space-between; padding: 32px 0 48px;
+  border-top: 1px solid var(--hairline); margin-top: 16px;
+}
+.week-nav-btn {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-2); padding: 10px 16px; border: 1px solid var(--hairline);
+}
+.week-nav-btn:hover { color: var(--text); border-color: var(--text-2); }
+.week-nav-btn.disabled { opacity: 0.3; pointer-events: none; }
+@media (max-width: 520px) {
+  .section-title { font-size: 22px; }
+  .stat-value { font-size: 24px; }
+  .hero-stat .stat-value { font-size: 32px; }
+  .week-stats { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="nav">
+  <a class="brand" href="../index.html">Running Log</a>
+  <a class="nav-link" href="../weeks/index.html">All Weeks</a>
+</div></div><div class="wrap">
+      <a class="back-link" href="index.html">← All Weeks</a>
+      <section class="section" style="border-bottom:none;">
+        <p class="eyebrow">Week</p>
+        <h2 class="section-title">Mar 30–Apr 05, 2026</h2>
+        <div class="stat-grid"><div class="stat-tile"><p class="stat-label">Distance</p><div class="stat-value">20.1<span class="stat-unit">km</span></div><span class="delta delta-up">↑ 161%</span></div><div class="stat-tile"><p class="stat-label">Time</p><div class="stat-value">1h 56m</div><span class="delta delta-up">↑ 162%</span></div><div class="stat-tile"><p class="stat-label">Pace</p><div class="stat-value">5:46/km</div><span class="delta delta-up">↑ 1%</span></div><div class="stat-tile"><p class="stat-label">Elevation</p><div class="stat-value">133<span class="stat-unit">m</span></div><span class="delta delta-up">↑ 32%</span></div><div class="stat-tile"><p class="stat-label">Avg HR</p><div class="stat-value">148<span class="stat-unit">bpm</span></div></div></div>
+      </section>
+      <div class="week-nav"><a class="week-nav-btn" href="2026-03-23.html">← Previous Week</a><a class="week-nav-btn" href="2026-04-06.html">Next Week →</a></div>
+    </div>
+</body>
+</html>
