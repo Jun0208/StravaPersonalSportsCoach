@@ -67,12 +67,17 @@ def pct_delta(curr, prev):
     return (curr - prev) / prev * 100.0
 
 
+EXTREME_DELTA_PCT = 150  # beyond this, the raw % is more distracting than informative
+
+
 def delta_badge(curr, prev, higher_is_up=True):
     d = pct_delta(curr, prev)
     if d is None:
         return '<span class="delta delta-flat">NEW</span>'
     arrow = "↑" if d >= 0 else "↓"
     cls = "delta-up" if d >= 0 else "delta-down"
+    if abs(d) > EXTREME_DELTA_PCT:
+        return f'<span class="delta {cls}">{arrow}</span>'
     return f'<span class="delta {cls}">{arrow} {abs(d):.0f}%</span>'
 
 
@@ -180,6 +185,7 @@ a { color: inherit; text-decoration: none; }
 .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
 .bar { width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 2px; }
 .bar-col.empty .bar { background: var(--surface-2); }
+.bar-col.muted .bar { background: #3a3a3a; }
 .bar-label { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
 .bar-value { font-size: 10px; color: var(--text-2); margin-bottom: 4px; font-weight: 600; }
 footer { padding: 32px 0 48px; }
@@ -369,6 +375,35 @@ def build_week_archive_list(rows):
     return page_shell("All Weeks — Running Log", body)
 
 
+def trend_chart_html(rows, idx, window=8):
+    """Bar chart of distance for up to `window` weeks ending at idx, with
+    the current week's bar in the accent color and the rest muted -- gives
+    each week page context for where that week sits in the recent trend."""
+    start = max(0, idx - window + 1)
+    span = rows[start:idx + 1]
+    max_dist = max((r["run_distance_km"] for r in span), default=0) or 1.0
+    bars = []
+    for i, r in enumerate(span):
+        d = r["run_distance_km"]
+        h = int((d / max_dist) * 120) if d else 0
+        is_current = (start + i) == idx
+        cls = "" if is_current else " muted"
+        if d == 0:
+            cls = " empty"
+        val_label = f"{d:.0f}" if d else ""
+        wk_label = r["week_start_date"].strftime("%-m/%-d") if os.name != "nt" else r["week_start_date"].strftime("%m/%d")
+        bars.append(
+            f'<div class="bar-col{cls}"><span class="bar-value">{val_label}</span>'
+            f'<div class="bar" style="height:{max(h,2)}px"></div>'
+            f'<span class="bar-label">{wk_label}</span></div>'
+        )
+    return f"""
+      <section class="section" style="border-bottom:none; padding-top:0;">
+        <p class="stat-label" style="margin-bottom:12px;">Recent Trend — Distance (km)</p>
+        <div class="chart-wrap"><div class="bar-row">{"".join(bars)}</div></div>
+      </section>"""
+
+
 def build_week_page(rows, idx):
     r = rows[idx]
     prev = rows[idx - 1] if idx > 0 else None
@@ -398,6 +433,7 @@ def build_week_page(rows, idx):
         {stat_tiles(r["run_distance_km"], r["run_time_min"], r["run_pace_min_per_km"],
                      r["run_elevation_gain_m"], r["avg_heartrate"], deltas)}
       </section>
+      {trend_chart_html(rows, idx)}
       <div class="week-nav">{prev_btn}{next_btn}</div>
     </div>"""
     return page_shell(f"{date_range} — Running Log", body)
