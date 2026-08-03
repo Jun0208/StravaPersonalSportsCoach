@@ -1,45 +1,45 @@
 {
-  "week_start": "2026-07-20",
-  "week_end": "2026-07-26",
-  "generated_at": "2026-07-27T10:36:27.555194",
+  "week_start": "2026-07-27",
+  "week_end": "2026-08-02",
+  "generated_at": "2026-08-03T10:36:46.836496",
   "running": {
-    "count": 3,
-    "distance_km": 31.15,
-    "moving_time_min": 164.4,
-    "elevation_gain_m": 110.0,
-    "avg_pace_min_per_km": 5.28,
-    "avg_heartrate": 152.6,
-    "longest_run_km": 12.39,
-    "fastest_pace_min_per_km": 5.18
+    "count": 1,
+    "distance_km": 11.77,
+    "moving_time_min": 70.5,
+    "elevation_gain_m": 40.0,
+    "avg_pace_min_per_km": 5.99,
+    "avg_heartrate": 145.2,
+    "longest_run_km": 11.77,
+    "fastest_pace_min_per_km": 5.99
   },
   "all_sports": {
-    "count": 6,
-    "distance_km": 31.15,
-    "moving_time_min": 339.5,
-    "elevation_gain_m": 110.0,
-    "avg_pace_min_per_km": 10.9,
-    "avg_heartrate": 132.3,
-    "longest_run_km": 12.39,
-    "fastest_pace_min_per_km": 5.18
+    "count": 4,
+    "distance_km": 11.77,
+    "moving_time_min": 239.6,
+    "elevation_gain_m": 40.0,
+    "avg_pace_min_per_km": 20.35,
+    "avg_heartrate": 112.4,
+    "longest_run_km": 11.77,
+    "fastest_pace_min_per_km": 5.99
   },
   "vs_previous_week": {
-    "distance_km_pct": 413.2,
-    "moving_time_min_pct": 433.8,
-    "pace_min_per_km_pct": 4.1
+    "distance_km_pct": -62.2,
+    "moving_time_min_pct": -57.1,
+    "pace_min_per_km_pct": 13.4
   },
   "vs_trailing_8wk_avg": {
-    "distance_km_pct": 105.2,
-    "moving_time_min_pct": 92.9
+    "distance_km_pct": -32.6,
+    "moving_time_min_pct": -27.0
   },
-  "trailing_8wk_avg_distance_km": 15.18,
+  "trailing_8wk_avg_distance_km": 17.46,
   "all_time": {
-    "weeks_tracked": 35,
-    "avg_weekly_distance_km": 13.4,
-    "total_distance_km": 468.8,
+    "weeks_tracked": 36,
+    "avg_weekly_distance_km": 13.35,
+    "total_distance_km": 480.6,
     "best_week_distance_km": 48.95,
     "best_week_start": "2026-05-18"
   },
   "vs_all_time_avg": {
-    "distance_km_pct": 132.5
+    "distance_km_pct": -11.8
   }
 }
