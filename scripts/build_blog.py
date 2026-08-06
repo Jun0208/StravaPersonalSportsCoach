@@ -152,19 +152,32 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+.banner {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--surface);
+  border-bottom: 1px solid var(--hairline);
+}
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 28px 0; border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap; row-gap: 10px;
+  padding: 18px 0;
 }
 .brand {
   font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
 }
 .brand-name { color: var(--down); }
+.nav-links { display: flex; align-items: center; gap: 18px; }
 .nav-link {
   font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-2); border-bottom: 1px solid transparent;
 }
 .nav-link:hover { color: var(--text); border-color: var(--text); }
+.nav-story {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent); padding: 7px 12px; border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nav-story:hover { background: var(--accent); color: var(--bg); }
 .section { padding: 48px 0; border-bottom: 1px solid var(--hairline); }
 .section:last-of-type { border-bottom: none; }
 .eyebrow {
@@ -271,14 +284,20 @@ def page_shell(title, body):
 """
 
 
+ABOUT_URL = "https://claude.ai/code/artifact/708f453d-d6e0-4673-bb62-0c5b1d3a4aaf"
+
+
 def nav_html(depth=0):
     """depth = number of directories below docs/blog/ this page lives in
     (0 for index.html, 1 for weeks/*.html) -- controls relative path prefixes."""
     prefix = "../" * depth
-    return f"""<div class="wrap"><div class="nav">
+    return f"""<div class="banner"><div class="wrap"><div class="nav">
   <a class="brand" href="{prefix}index.html"><span class="brand-name">Jun's</span> Running Log</a>
-  <a class="nav-link" href="{prefix}weeks/index.html">All Weeks</a>
-</div></div>"""
+  <div class="nav-links">
+    <a class="nav-link" href="{prefix}weeks/index.html">All Weeks</a>
+    <a class="nav-story" href="{ABOUT_URL}" target="_blank" rel="noopener">How This Works ↗</a>
+  </div>
+</div></div></div>"""
 
 
 def stat_tiles(distance, time_min, pace, elevation, hr, deltas=None):
