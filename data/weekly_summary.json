@@ -1,45 +1,45 @@
 {
-  "week_start": "2026-07-27",
-  "week_end": "2026-08-02",
-  "generated_at": "2026-08-03T10:36:46.836496",
+  "week_start": "2026-08-03",
+  "week_end": "2026-08-09",
+  "generated_at": "2026-08-10T08:23:45.259857",
   "running": {
-    "count": 1,
-    "distance_km": 11.77,
-    "moving_time_min": 70.5,
-    "elevation_gain_m": 40.0,
-    "avg_pace_min_per_km": 5.99,
-    "avg_heartrate": 145.2,
-    "longest_run_km": 11.77,
-    "fastest_pace_min_per_km": 5.99
+    "count": 3,
+    "distance_km": 33.03,
+    "moving_time_min": 181.5,
+    "elevation_gain_m": 98.0,
+    "avg_pace_min_per_km": 5.49,
+    "avg_heartrate": 139.3,
+    "longest_run_km": 13.68,
+    "fastest_pace_min_per_km": 5.38
   },
   "all_sports": {
     "count": 4,
-    "distance_km": 11.77,
-    "moving_time_min": 239.6,
-    "elevation_gain_m": 40.0,
-    "avg_pace_min_per_km": 20.35,
-    "avg_heartrate": 112.4,
-    "longest_run_km": 11.77,
-    "fastest_pace_min_per_km": 5.99
+    "distance_km": 33.03,
+    "moving_time_min": 249.4,
+    "elevation_gain_m": 98.0,
+    "avg_pace_min_per_km": 7.55,
+    "avg_heartrate": 130.9,
+    "longest_run_km": 13.68,
+    "fastest_pace_min_per_km": 5.38
   },
   "vs_previous_week": {
-    "distance_km_pct": -62.2,
-    "moving_time_min_pct": -57.1,
-    "pace_min_per_km_pct": 13.4
+    "distance_km_pct": 180.6,
+    "moving_time_min_pct": 157.4,
+    "pace_min_per_km_pct": -8.3
   },
   "vs_trailing_8wk_avg": {
-    "distance_km_pct": -32.6,
-    "moving_time_min_pct": -27.0
+    "distance_km_pct": 97.2,
+    "moving_time_min_pct": 94.6
   },
-  "trailing_8wk_avg_distance_km": 17.46,
+  "trailing_8wk_avg_distance_km": 16.75,
   "all_time": {
-    "weeks_tracked": 36,
-    "avg_weekly_distance_km": 13.35,
-    "total_distance_km": 480.6,
+    "weeks_tracked": 37,
+    "avg_weekly_distance_km": 13.88,
+    "total_distance_km": 513.6,
     "best_week_distance_km": 48.95,
     "best_week_start": "2026-05-18"
   },
   "vs_all_time_avg": {
-    "distance_km_pct": -11.8
+    "distance_km_pct": 138.0
   }
 }
