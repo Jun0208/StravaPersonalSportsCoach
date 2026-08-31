@@ -1,45 +1,45 @@
 {
-  "week_start": "2026-08-17",
-  "week_end": "2026-08-23",
-  "generated_at": "2026-08-24T07:52:54.756638",
+  "week_start": "2026-08-24",
+  "week_end": "2026-08-30",
+  "generated_at": "2026-08-31T14:44:22.610419",
   "running": {
-    "count": 3,
-    "distance_km": 21.44,
-    "moving_time_min": 115.2,
-    "elevation_gain_m": 76.0,
-    "avg_pace_min_per_km": 5.37,
-    "avg_heartrate": 138.1,
-    "longest_run_km": 11.02,
-    "fastest_pace_min_per_km": 5.29
+    "count": 2,
+    "distance_km": 19.33,
+    "moving_time_min": 104.5,
+    "elevation_gain_m": 46.0,
+    "avg_pace_min_per_km": 5.41,
+    "avg_heartrate": 146.1,
+    "longest_run_km": 12.01,
+    "fastest_pace_min_per_km": 5.32
   },
   "all_sports": {
-    "count": 7,
-    "distance_km": 21.44,
-    "moving_time_min": 343.0,
-    "elevation_gain_m": 76.0,
-    "avg_pace_min_per_km": 16.0,
-    "avg_heartrate": 119.2,
-    "longest_run_km": 11.02,
-    "fastest_pace_min_per_km": 5.29
+    "count": 8,
+    "distance_km": 22.55,
+    "moving_time_min": 460.9,
+    "elevation_gain_m": 63.0,
+    "avg_pace_min_per_km": 20.44,
+    "avg_heartrate": 113.8,
+    "longest_run_km": 12.01,
+    "fastest_pace_min_per_km": 5.32
   },
   "vs_previous_week": {
-    "distance_km_pct": -2.6,
-    "moving_time_min_pct": 1.1,
-    "pace_min_per_km_pct": 3.9
+    "distance_km_pct": -9.8,
+    "moving_time_min_pct": -9.3,
+    "pace_min_per_km_pct": 0.7
   },
   "vs_trailing_8wk_avg": {
-    "distance_km_pct": 3.8,
-    "moving_time_min_pct": 2.8
+    "distance_km_pct": -7.4,
+    "moving_time_min_pct": -7.6
   },
-  "trailing_8wk_avg_distance_km": 20.65,
+  "trailing_8wk_avg_distance_km": 20.89,
   "all_time": {
-    "weeks_tracked": 39,
-    "avg_weekly_distance_km": 14.28,
-    "total_distance_km": 557.1,
+    "weeks_tracked": 40,
+    "avg_weekly_distance_km": 14.41,
+    "total_distance_km": 576.4,
     "best_week_distance_km": 48.95,
     "best_week_start": "2026-05-18"
   },
   "vs_all_time_avg": {
-    "distance_km_pct": 50.1
+    "distance_km_pct": 34.1
   }
 }
