@@ -1,10 +1,10 @@
-**How you did this week (Sep 14–20):** A pure running week — 3 runs totaling 20.13 km, no strength sessions this time. All three runs were close together (Monday, Wednesday, Thursday) and similar in length (7.5 km, 6.9 km, 5.7 km), with pace easing from 5:26/km to 5:50/km and heart rate creeping up to 150 bpm on the third run — a sign of accumulating fatigue across a tightly-packed few days rather than anything to worry about on its own.
+**How you did this week (Sep 21–27):** A very light week — just 1 run, 5.51 km in 29 minutes at 5:18/km, plus two strength sessions. Activity was squeezed into two days (Wednesday and Friday), with the other five days completely blank. Pace itself was fine and heart rate was normal (138.8 bpm) — this was a volume drop, not a hard or struggling effort.
 
-**Key insight — you're now landing in your sustainable band for the third time in four weeks, but the long run keeps slipping.** At 20.13 km you're down 11.2% on last week and essentially right at your trailing 8-week average (21.67 km, -7.1%), continuing the run of weeks in the low-to-mid 20s that's been your most stable stretch this year. That part is working. But for the second week running, the planned long run didn't happen — your longest effort was just 7.48 km, well short of the 12–14 km suggested, and instead you ran three similar mid-length efforts back to back rather than spacing them with a proper long session. Combined with the pace slowdown and rising heart rate through the week, that clustering is worth addressing directly rather than letting it repeat a third time.
+**Key insight — this is your sharpest single-week drop yet, though not your lowest week ever.** At 5.51 km you're down 78.1% on last week and 73.7% below your trailing 8-week average (20.92 km) — a much bigger fall than any of the gradual declines earlier this year. It's the third-lowest non-zero week in your entire tracked history (44 weeks), behind only two weeks back in February and June. The one genuine positive: you haven't had a true zero-run week since June 1, and this week — barely — keeps that streak alive. Given the last two weeks both showed rising heart rate and pace slowing within the week, this drop may simply be the recovery your body had been signalling for; it's also a much sharper pullback than a planned deload would normally be, so it's worth noticing rather than brushing past.
 
-**Next week's plan: same volume, but spaced out properly with the long run actually in it.**
-- **Run 1 — Easy**: 5–6 km at ~5:50–6:10/km, genuinely easy.
-- **Run 2 — Steady**: 6–7 km at ~5:20–5:40/km, at least two days after Run 1.
-- **Run 3 — Long run**: 12–14 km at ~5:45–6:05/km — make this one non-negotiable, with a rest day either side of it.
+**Next week's plan: rebuild gently, don't jump straight back to your normal range.**
+- **Run 1 — Easy**: 4–5 km at ~5:50–6:10/km, genuinely easy, just to re-establish the habit.
+- **Run 2 — Steady**: 6–7 km at ~5:30–5:50/km.
+- **Run 3 — Moderate**: 8–10 km at ~5:40–6:00/km, only if the first two feel comfortable.
 
-Target 22–26 km, spread across the full week rather than bunched into a few days. Your volume has genuinely stabilised; the next piece is giving each run room to breathe so the long run actually happens.
+Target 18–22 km across the week — a real step back toward your recent normal, but eased in rather than forced. One light week after a run of solid ones isn't a setback on its own; how you rebuild from here is what matters.
