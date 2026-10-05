@@ -1,45 +1,45 @@
 {
-  "week_start": "2026-09-21",
-  "week_end": "2026-09-27",
-  "generated_at": "2026-09-28T14:51:19.470186",
+  "week_start": "2026-09-28",
+  "week_end": "2026-10-04",
+  "generated_at": "2026-10-05T15:28:38.936847",
   "running": {
-    "count": 1,
-    "distance_km": 5.51,
-    "moving_time_min": 29.2,
-    "elevation_gain_m": 0.0,
-    "avg_pace_min_per_km": 5.31,
-    "avg_heartrate": 138.8,
-    "longest_run_km": 5.51,
-    "fastest_pace_min_per_km": 5.31
+    "count": 3,
+    "distance_km": 27.91,
+    "moving_time_min": 138.9,
+    "elevation_gain_m": 192.0,
+    "avg_pace_min_per_km": 4.98,
+    "avg_heartrate": 148.5,
+    "longest_run_km": 21.32,
+    "fastest_pace_min_per_km": 4.79
   },
   "all_sports": {
     "count": 3,
-    "distance_km": 5.51,
-    "moving_time_min": 154.2,
-    "elevation_gain_m": 0.0,
-    "avg_pace_min_per_km": 27.98,
-    "avg_heartrate": 112.7,
-    "longest_run_km": 5.51,
-    "fastest_pace_min_per_km": 5.31
+    "distance_km": 27.91,
+    "moving_time_min": 138.9,
+    "elevation_gain_m": 192.0,
+    "avg_pace_min_per_km": 4.98,
+    "avg_heartrate": 148.5,
+    "longest_run_km": 21.32,
+    "fastest_pace_min_per_km": 4.79
   },
   "vs_previous_week": {
-    "distance_km_pct": -78.1,
-    "moving_time_min_pct": -79.9,
-    "pace_min_per_km_pct": -8.1
+    "distance_km_pct": 406.5,
+    "moving_time_min_pct": 375.7,
+    "pace_min_per_km_pct": -6.2
   },
   "vs_trailing_8wk_avg": {
-    "distance_km_pct": -73.7,
-    "moving_time_min_pct": -74.8
+    "distance_km_pct": 38.6,
+    "moving_time_min_pct": 25.6
   },
-  "trailing_8wk_avg_distance_km": 20.92,
+  "trailing_8wk_avg_distance_km": 20.14,
   "all_time": {
-    "weeks_tracked": 44,
-    "avg_weekly_distance_km": 14.47,
-    "total_distance_km": 636.7,
+    "weeks_tracked": 45,
+    "avg_weekly_distance_km": 14.77,
+    "total_distance_km": 664.6,
     "best_week_distance_km": 48.95,
     "best_week_start": "2026-05-18"
   },
   "vs_all_time_avg": {
-    "distance_km_pct": -61.9
+    "distance_km_pct": 89.0
   }
 }
