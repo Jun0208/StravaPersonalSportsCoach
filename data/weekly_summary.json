@@ -1,41 +1,45 @@
 {
-  "week_start": "2026-10-26",
-  "week_end": "2026-11-01",
-  "generated_at": "2026-11-02T17:45:13.534253",
+  "week_start": "2026-11-09",
+  "week_end": "2026-11-15",
+  "generated_at": "2026-11-16T17:51:27.600442",
   "running": {
-    "count": 0,
-    "distance_km": 0.0,
-    "moving_time_min": 0.0,
-    "elevation_gain_m": 0.0,
-    "avg_pace_min_per_km": null,
-    "avg_heartrate": null
+    "count": 2,
+    "distance_km": 11.65,
+    "moving_time_min": 66.8,
+    "elevation_gain_m": 77.0,
+    "avg_pace_min_per_km": 5.74,
+    "avg_heartrate": 143.8,
+    "longest_run_km": 5.91,
+    "fastest_pace_min_per_km": 5.74
   },
   "all_sports": {
-    "count": 0,
-    "distance_km": 0.0,
-    "moving_time_min": 0.0,
-    "elevation_gain_m": 0.0,
-    "avg_pace_min_per_km": null,
-    "avg_heartrate": null
+    "count": 3,
+    "distance_km": 11.65,
+    "moving_time_min": 109.0,
+    "elevation_gain_m": 77.0,
+    "avg_pace_min_per_km": 9.36,
+    "avg_heartrate": 129.8,
+    "longest_run_km": 5.91,
+    "fastest_pace_min_per_km": 5.74
   },
   "vs_previous_week": {
-    "distance_km_pct": -100.0,
-    "moving_time_min_pct": -100.0,
+    "distance_km_pct": null,
+    "moving_time_min_pct": null,
     "pace_min_per_km_pct": null
   },
   "vs_trailing_8wk_avg": {
-    "distance_km_pct": -100.0,
-    "moving_time_min_pct": -100.0
+    "distance_km_pct": -15.9,
+    "moving_time_min_pct": -12.1
   },
-  "trailing_8wk_avg_distance_km": 14.87,
+  "trailing_8wk_avg_distance_km": 13.85,
   "all_time": {
-    "weeks_tracked": 49,
-    "avg_weekly_distance_km": 13.79,
-    "total_distance_km": 675.5,
+    "weeks_tracked": 50,
+    "avg_weekly_distance_km": 13.74,
+    "total_distance_km": 687.2,
     "best_week_distance_km": 48.95,
     "best_week_start": "2026-05-18"
   },
   "vs_all_time_avg": {
-    "distance_km_pct": -100.0
+    "distance_km_pct": -15.2
   }
 }
